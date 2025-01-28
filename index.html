@@ -1,0 +1,48 @@
+const finalBoss = {
+  health: 100,
+  attackDamage: 10,
+  specialAbilityCooldown: 5,  // time in seconds
+  attackPatterns: ["punch", "charge", "summonMinions", "laserBlast"],
+
+  attack() {
+    // Randomize attack pattern for diversity
+    const attack = this.attackPatterns[Math.floor(Math.random() * this.attackPatterns.length)];
+    console.log(`Boss uses ${attack}`);
+    
+    // Example of each attack type
+    if (attack === "punch") {
+      this.dealDamage(20); // Player takes 20 damage
+    } else if (attack === "charge") {
+      this.dealDamage(30); // More powerful charge attack
+    }
+    // Add more attack types as needed
+  },
+
+  dealDamage(damage) {
+    player.health -= damage;
+    console.log(`Player takes ${damage} damage. Remaining health: ${player.health}`);
+    if (player.health <= 0) {
+      console.log("Game Over! You were defeated by the Final Boss.");
+      // End game or restart
+    }
+  },
+
+  specialAbility() {
+    console.log("Boss is charging up a special attack!");
+    // Implement special attack logic
+  },
+
+  start() {
+    console.log("You are facing the Final Boss!");
+    setInterval(() => {
+      if (this.health > 0) {
+        this.attack();
+      } else {
+        console.log("You defeated the Final Boss! Congratulations!");
+        // End the game or transition to the next phase
+      }
+    }, 1000);  // Attack every second, for example
+  }
+};
+
+finalBoss.start();
